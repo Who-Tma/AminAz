@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://who-tma.github.io/AminAz/sitemap.xml
