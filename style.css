@@ -12,8 +12,131 @@ html, body {
   font-family: Tahoma, "Vazirmatn", "Segoe UI", sans-serif;
 }
 
-/* Screen-reader/SEO-only text: present in the DOM for crawlers and assistive tech,
-   invisible and non-disruptive to the visual scene. */
+/* ---------- language gate (loading + language pick) ---------- */
+
+.lang-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: #171310;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s ease;
+}
+
+.lang-gate.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.lang-gate__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  padding: 24px;
+  max-width: 360px;
+}
+
+.lang-gate__spinner {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.15);
+  border-top-color: #d8a34e;
+  animation: gate-spin 0.9s linear infinite;
+}
+
+@keyframes gate-spin {
+  to { transform: rotate(360deg); }
+}
+
+.lang-gate__label {
+  color: #cfc7b8;
+  font-size: 12.5px;
+  text-align: center;
+  line-height: 1.9;
+  direction: ltr;
+}
+
+.lang-gate__options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  width: 100%;
+}
+
+.lang-gate__btn {
+  background: #2a2219;
+  border: 1px solid #4a3d2f;
+  color: #f1ece2;
+  padding: 12px 10px;
+  border-radius: 12px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.lang-gate__btn:hover {
+  background: #3a2f24;
+  border-color: #7a5a3a;
+}
+
+/* ---------- LTR language overrides ---------- */
+
+body.is-ltr .bubble,
+body.is-ltr .live-bubble,
+body.is-ltr .chat-bubble,
+body.is-ltr .sheet,
+body.is-ltr .contact-link {
+  direction: ltr;
+  text-align: left;
+}
+
+body.is-ltr .bubble,
+body.is-ltr .live-bubble {
+  right: auto;
+  left: -6%;
+  transform-origin: bottom left;
+}
+
+body.is-ltr .bubble::after,
+body.is-ltr .live-bubble::after {
+  right: auto;
+  left: 28px;
+  transform: scaleX(-1);
+}
+
+body.is-ltr .bubble.is-corner {
+  right: 16px;
+  left: auto;
+  transform-origin: top right;
+}
+
+body.is-ltr .live-bubble__options,
+body.is-ltr .chat-options {
+  direction: ltr;
+  justify-content: flex-start;
+}
+
+body.is-ltr .chat-row--char {
+  justify-content: flex-start;
+}
+
+body.is-ltr .chat-row--user {
+  justify-content: flex-end;
+}
+
+body.is-ltr .chat-bubble--char {
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 4px;
+}
+
+body.is-ltr .chat-bubble--user {
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 4px;
+}
 .visually-hidden {
   position: absolute;
   width: 1px;
