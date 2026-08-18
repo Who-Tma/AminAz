@@ -10,6 +10,7 @@
 <meta name="author" content="Amin Azizi">
 <meta name="robots" content="index, follow">
 <meta name="google-site-verification" content="D5wuP009Zv8b2oV4w4UvIYBY2gdrPFg4ZDlm3iR_PZU" />
+
 <link rel="canonical" href="https://who-tma.github.io/AminAz/">
 
 <!-- Open Graph -->
@@ -54,6 +55,20 @@
 </head>
 <body>
 
+  <!-- Language gate: shown first, doubles as the loading screen -->
+  <div class="lang-gate" id="langGate">
+    <div class="lang-gate__inner">
+      <div class="lang-gate__spinner" aria-hidden="true"></div>
+      <p class="lang-gate__label">زبان را انتخاب کنید · Choose a language · Выберите язык · Sprache wählen</p>
+      <div class="lang-gate__options">
+        <button type="button" class="lang-gate__btn" data-lang="fa">فارسی</button>
+        <button type="button" class="lang-gate__btn" data-lang="en">English</button>
+        <button type="button" class="lang-gate__btn" data-lang="ru">Русский</button>
+        <button type="button" class="lang-gate__btn" data-lang="de">Deutsch</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Visually hidden, screen-reader/SEO-friendly summary (the scene itself is a visual/interactive experience,
        this section carries the crawlable text content so search engines can read who this page is about). -->
   <h1 class="visually-hidden">امین عزیزی | Amin Azizi</h1>
@@ -74,8 +89,8 @@
       <div class="live-bubble" id="liveBubble">
         <div class="live-bubble__text" id="liveBubbleText"></div>
         <div class="live-bubble__options" id="liveBubbleOptions" hidden>
-          <button type="button" data-answer="yes">متوجه شدم</button>
-          <button type="button" data-answer="no">متوجه نشدم</button>
+          <button type="button" data-answer="yes" data-i18n="confirm_yes">متوجه شدم</button>
+          <button type="button" data-answer="no" data-i18n="confirm_no">متوجه نشدم</button>
         </div>
       </div>
 
@@ -99,19 +114,19 @@
 
   <div class="sheet" id="sheetAbout">
     <div class="sheet__handle"></div>
-    <h2 class="sheet__title">مهارت‌هام</h2>
+    <h2 class="sheet__title" data-i18n="skills_title">مهارت‌هام</h2>
     <div class="sheet__body">
       <ul class="skill-list" id="skillList">
         <li class="skill-item">
-          <span class="skill-item__name">ساخت مینی‌اپ تلگرامی (TMA)</span>
+          <span class="skill-item__name" data-i18n="skill_0">ساخت مینی‌اپ تلگرامی (TMA)</span>
           <span class="skill-item__stars" aria-label="۴ از ۵">★★★★</span>
         </li>
         <li class="skill-item">
-          <span class="skill-item__name">طراحی و ساخت سایت</span>
+          <span class="skill-item__name" data-i18n="skill_1">طراحی و ساخت سایت</span>
           <span class="skill-item__stars" aria-label="۴ از ۵">★★★★</span>
         </li>
         <li class="skill-item">
-          <span class="skill-item__name">ساخت وب‌اپلیکیشن (قابل نصب با APK)</span>
+          <span class="skill-item__name" data-i18n="skill_2">ساخت وب‌اپلیکیشن (قابل نصب با APK)</span>
           <span class="skill-item__stars" aria-label="۴ از ۵">★★★★</span>
         </li>
         <li class="skill-item">
@@ -123,11 +138,11 @@
           <span class="skill-item__stars" aria-label="۴ از ۵">★★★★</span>
         </li>
         <li class="skill-item">
-          <span class="skill-item__name">ساخت بازی‌های سبک اندروید</span>
+          <span class="skill-item__name" data-i18n="skill_5">ساخت بازی‌های سبک اندروید</span>
           <span class="skill-item__stars" aria-label="۳ از ۵">★★★</span>
         </li>
         <li class="skill-item">
-          <span class="skill-item__name">کار با APK Editor</span>
+          <span class="skill-item__name" data-i18n="skill_6">کار با APK Editor</span>
           <span class="skill-item__stars" aria-label="۳ از ۵">★★★</span>
         </li>
         <li class="skill-item">
@@ -135,19 +150,19 @@
           <span class="skill-item__stars" aria-label="۳ از ۵">★★★</span>
         </li>
         <li class="skill-item">
-          <span class="skill-item__name">کار با AI</span>
+          <span class="skill-item__name" data-i18n="skill_8">کار با AI</span>
           <span class="skill-item__stars" aria-label="۳ از ۵">★★★</span>
         </li>
       </ul>
     </div>
-    <button class="sheet__close" data-close>بستن</button>
+    <button class="sheet__close" data-close data-i18n="sheet_close">بستن</button>
   </div>
 
   <div class="sheet" id="sheetContact">
     <div class="sheet__handle"></div>
-    <h2 class="sheet__title">راه ارتباطی</h2>
+    <h2 class="sheet__title" data-i18n="contact_title">راه ارتباطی</h2>
     <div class="sheet__body">
-      <p class="sheet__intro">از هر کدوم راحتی، پیام بده تا در ارتباط باشیم:</p>
+      <p class="sheet__intro" data-i18n="contact_intro">از هر کدوم راحتی، پیام بده تا در ارتباط باشیم:</p>
       <a class="contact-link" href="https://t.me/Os_Amin" target="_blank" rel="noopener">
         <span class="contact-link__icon contact-link__icon--telegram" aria-hidden="true">
           <svg viewBox="0 0 240 240" width="22" height="22">
@@ -156,19 +171,19 @@
           </svg>
         </span>
         <span class="contact-link__text">
-          <span class="contact-link__label">تلگرام</span>
+          <span class="contact-link__label" data-i18n="contact_telegram_label">تلگرام</span>
           <span class="contact-link__value">@Os_Amin</span>
         </span>
       </a>
       <a class="contact-link" href="mailto:whotma.dev@gmail.com">
         <span class="contact-link__icon">✉️</span>
         <span class="contact-link__text">
-          <span class="contact-link__label">ایمیل</span>
+          <span class="contact-link__label" data-i18n="contact_email_label">ایمیل</span>
           <span class="contact-link__value">whotma.dev@gmail.com</span>
         </span>
       </a>
     </div>
-    <button class="sheet__close" data-close>بستن</button>
+    <button class="sheet__close" data-close data-i18n="sheet_close">بستن</button>
   </div>
 
   <script src="script.js"></script>
