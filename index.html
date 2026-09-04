@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>امین عزیزی | Amin Azizi — توسعه‌دهنده فرانت‌اند و سازنده AdsZero (Az Studio)</title>
+<meta name="description" content="امین عزیزی (Amin Azizi) — توسعه‌دهنده فرانت‌اند وب (HTML/CSS/JS) و سازنده مینی‌اپ‌های تلگرام (TMA). سازنده‌ی AdsZero با برند Az Studio، یک پلتفرم کسب سکه با انجام تسک در تلگرام. آیدی تلگرام: Os_Amin.">
+<meta name="keywords" content="امین عزیزی, Amin Azizi, Amin Az, Az Studio, AZ, AdsZero, Ads Zero, Coin earn, TMA dev, Os_Amin, توسعه‌دهنده مینی‌اپ تلگرام, طراح فرانت‌اند">
+<meta name="author" content="Amin Azizi">
+<meta name="robots" content="index, follow">
+<meta name="google-site-verification" content="D5wuP009Zv8b2oV4w4UvIYBY2gdrPFg4ZDlm3iR_PZU" />
+
+<link rel="canonical" href="https://who-tma.github.io/AminAz/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="profile">
+<meta property="og:title" content="امین عزیزی | Amin Azizi — Az Studio / AdsZero">
+<meta property="og:description" content="توسعه‌دهنده فرانت‌اند و سازنده مینی‌اپ‌های تلگرام (TMA). سازنده AdsZero — پلتفرم کسب سکه با انجام تسک در تلگرام.">
+<meta property="og:image" content="https://who-tma.github.io/AminAz/room-bg.jpg">
+<meta property="og:url" content="https://who-tma.github.io/AminAz/">
+<meta property="og:locale" content="fa_IR">
+<meta property="profile:username" content="Os_Amin">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="امین عزیزی | Amin Azizi — Az Studio / AdsZero">
+<meta name="twitter:description" content="توسعه‌دهنده فرانت‌اند و سازنده مینی‌اپ‌های تلگرام (TMA). سازنده AdsZero.">
+<meta name="twitter:image" content="https://who-tma.github.io/AminAz/room-bg.jpg">
+
+<!-- Structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Amin Azizi",
+  "alternateName": ["امین عزیزی", "Amin Az", "Os_Amin", "AZ"],
+  "url": "https://who-tma.github.io/AminAz/",
+  "jobTitle": "Frontend Web Developer / Telegram Mini App Developer",
+  "description": "توسعه‌دهنده فرانت‌اند وب (HTML/CSS/JS) و سازنده مینی‌اپ‌های تلگرام (TMA). سازنده AdsZero با برند Az Studio.",
+  "knowsAbout": ["HTML", "CSS", "JavaScript", "Bootstrap", "Tailwind CSS", "Telegram Mini App Development", "TMA", "APK Editor", "Lunacy", "UI/UX Design"],
+  "sameAs": [
+    "https://t.me/Os_Amin",
+    "https://t.me/AdsZeroBot/adszero"
+  ],
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Az Studio",
+    "alternateName": "AdsZero"
+  }
+}
+</script>
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Language gate: shown first, doubles as the loading screen -->
+  <div class="lang-gate" id="langGate">
+    <canvas class="lang-gate__stars" id="gateStars"></canvas>
+
+    <div class="lang-gate__nebula lang-gate__nebula--one"></div>
+    <div class="lang-gate__nebula lang-gate__nebula--two"></div>
+    <div class="lang-gate__nebula lang-gate__nebula--three"></div>
+    <div class="lang-gate__shooting-star"></div>
+
+    <div class="lang-gate__inner">
+      <div class="lang-gate__brand" id="gateBrand">Az Support</div>
+      <div class="lang-gate__tagline" id="gateTagline">Loading ...</div>
+
+      <div class="lang-gate__lower">
+        <div class="lang-gate__orbit-wrap" id="gateOrbit">
+          <div class="lang-gate__core"></div>
+          <div class="lang-gate__orbit lang-gate__orbit--o1"><div class="lang-gate__planet"></div></div>
+          <div class="lang-gate__orbit lang-gate__orbit--o2"><div class="lang-gate__planet"></div></div>
+          <div class="lang-gate__orbit lang-gate__orbit--o3"><div class="lang-gate__planet"></div></div>
+        </div>
+
+        <div class="lang-gate__options" id="gateOptions">
+          <button type="button" class="lang-gate__btn" data-lang="fa">
+            <span class="lang-gate__flag">🇮🇷</span>
+            <span class="lang-gate__btn-name">فارسی</span>
+          </button>
+          <button type="button" class="lang-gate__btn" data-lang="en">
+            <span class="lang-gate__flag">🇬🇧</span>
+            <span class="lang-gate__btn-name">English</span>
+          </button>
+          <button type="button" class="lang-gate__btn" data-lang="ru">
+            <span class="lang-gate__flag">🇷🇺</span>
+            <span class="lang-gate__btn-name">Русский</span>
+          </button>
+          <button type="button" class="lang-gate__btn" data-lang="de">
+            <span class="lang-gate__flag">🇩🇪</span>
+            <span class="lang-gate__btn-name">Deutsch</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Visually hidden, screen-reader/SEO-friendly summary (the scene itself is a visual/interactive experience,
+       this section carries the crawlable text content so search engines can read who this page is about). -->
+  <h1 class="visually-hidden">امین عزیزی | Amin Azizi</h1>
+  <p class="visually-hidden">
+    امین عزیزی (Amin Azizi) با آیدی تلگرام Os_Amin، توسعه‌دهنده فرانت‌اند وب (HTML، CSS، JavaScript، Bootstrap، Tailwind CSS) و سازنده مینی‌اپ‌های تلگرام (Telegram Mini App / TMA) است.
+    از پروژه‌های او AdsZero است — با برند Az Studio (به اختصار AZ) — یک پلتفرم کسب سکه (Coin Earn) با انجام تسک در تلگرام.
+    مهارت‌های دیگر: طراحی رابط کاربری با Lunacy، ساخت وب‌اپلیکیشن قابل نصب روی اندروید (APK)، و ساخت بازی‌های سبک اندروید.
+  </p>
+
+  <main class="stage">
+    <img class="stage__bg" src="room-bg.jpg" alt="اتاق">
+
+    <div class="stage__character-wrap">
+      <div class="bubble" id="bubble">
+        <span class="bubble__text" id="bubbleText"></span>
+      </div>
+
+      <div class="live-bubble" id="liveBubble">
+        <div class="live-bubble__text" id="liveBubbleText"></div>
+        <div class="live-bubble__options" id="liveBubbleOptions" hidden>
+          <button type="button" data-answer="yes" data-i18n="confirm_yes">متوجه شدم</button>
+          <button type="button" data-answer="no" data-i18n="confirm_no">متوجه نشدم</button>
+        </div>
+      </div>
+
+      <img class="stage__character" src="character-idle.png" alt="کاراکتر">
+    </div>
+
+    <div class="stage__desk-wrap">
+      <img class="stage__desk" src="desk.png" alt="میز چوبی">
+      <button class="hotspot hotspot--paper" id="paperBtn" aria-label="راه ارتباطی"></button>
+      <button class="hotspot hotspot--book" id="bookBtn" aria-label="درباره من"></button>
+      <span class="desk-dot desk-dot--book" id="bookDot"></span>
+      <span class="desk-dot desk-dot--paper" id="paperDot"></span>
+    </div>
+
+    <!-- Hotspot sits over the real laptop already drawn in room-bg.jpg (position computed in JS
+         to match the image's object-fit: cover mapping, so it lines up at any viewport size). -->
+    <span class="laptop-glow" id="laptopGlow"></span>
+    <button class="hotspot hotspot--laptop" id="laptopBtn" aria-label="لپ‌تاپ" disabled></button>
+  </main>
+
+  <!-- Chat log lives at the top of the screen, in the same spot the welcome bubble ends up -->
+  <div class="chat-log" id="chatLog"></div>
+
+  <!-- Overlay + bottom sheet -->
+  <div class="overlay" id="overlay"></div>
+
+  <div class="sheet sheet--book" id="sheetAbout">
+    <div class="sheet__handle"></div>
+    <div class="sheet__body sheet__body--book">
+      <iframe class="book-frame" id="bookFrame" src="book.html" title="کتاب" loading="lazy"></iframe>
+    </div>
+    <button class="sheet__close" data-close data-i18n="sheet_close">بستن</button>
+  </div>
+
+  <div class="sheet" id="sheetContact">
+    <div class="sheet__handle"></div>
+    <h2 class="sheet__title" data-i18n="contact_title">راه ارتباطی</h2>
+    <div class="sheet__body">
+      <p class="sheet__intro" data-i18n="contact_intro">از هر کدوم راحتی، پیام بده تا در ارتباط باشیم:</p>
+      <a class="contact-link" href="https://t.me/Os_Amin" target="_blank" rel="noopener">
+        <span class="contact-link__icon contact-link__icon--telegram" aria-hidden="true">
+          <svg viewBox="0 0 240 240" width="22" height="22">
+            <circle cx="120" cy="120" r="120" fill="#29A9EA"/>
+            <path fill="#fff" d="M180.5 72.3 159.6 172c-1.6 7-5.8 8.7-11.7 5.4l-32.3-23.8-15.6 15c-1.7 1.7-3.2 3.2-6.5 3.2l2.3-33 60.1-54.3c2.6-2.3-.6-3.6-4-1.3l-74.3 46.8-32-10c-7-2.2-7.1-7 1.5-10.3l125-48.2c5.8-2.1 10.9 1.4 8.4 10.8Z"/>
+          </svg>
+        </span>
+        <span class="contact-link__text">
+          <span class="contact-link__label" data-i18n="contact_telegram_label">تلگرام</span>
+          <span class="contact-link__value">@Os_Amin</span>
+        </span>
+      </a>
+      <a class="contact-link" href="mailto:whotma.dev@gmail.com">
+        <span class="contact-link__icon">✉️</span>
+        <span class="contact-link__text">
+          <span class="contact-link__label" data-i18n="contact_email_label">ایمیل</span>
+          <span class="contact-link__value">whotma.dev@gmail.com</span>
+        </span>
+      </a>
+    </div>
+    <button class="sheet__close" data-close data-i18n="sheet_close">بستن</button>
+  </div>
+
+  <!-- Fullscreen "laptop" -->
+  <div class="laptop-screen" id="laptopScreen">
+    <div class="laptop-screen__frame" id="laptopFrame">
+      <div class="laptop-screen__topbar">
+        <span class="laptop-screen__cam"></span>
+        <span class="laptop-screen__title">AZ-PC</span>
+        <button class="laptop-screen__close" id="laptopCloseBtn" aria-label="بستن">✕</button>
+      </div>
+
+      <div class="laptop-screen__body">
+
+        <!-- ---------- Windows 10-style desktop ---------- -->
+        <div class="win-desktop" id="winDesktop">
+          <button type="button" class="win-icon win-icon--1" id="gameExeIcon">
+            <span class="win-icon__img">
+              <span class="win-icon__glyph"></span>
+            </span>
+            <span class="win-icon__label">Jump.exe</span>
+          </button>
+
+          <button type="button" class="win-icon win-icon--2" id="birdExeIcon">
+            <span class="win-icon__img win-icon__img--bird">
+              <span class="win-icon__glyph win-icon__glyph--bird" aria-hidden="true">🕊️</span>
+            </span>
+            <span class="win-icon__label" data-i18n="bird_title">Bird.exe</span>
+          </button>
+
+          <div class="win-start-menu" id="winStartMenu" hidden>
+            <button type="button" class="win-start-menu__item" id="winShutdownBtn">
+              <span class="win-start-menu__icon" aria-hidden="true">⏻</span>
+              <span data-i18n="win_shutdown">خاموش کردن</span>
+            </button>
+          </div>
+
+          <div class="win-taskbar">
+            <button type="button" class="win-start" id="winStartBtn" aria-label="Start">
+              <span class="win-start__logo">
+                <span></span><span></span><span></span><span></span>
+              </span>
+            </button>
+            <div class="win-taskbar__apps" id="winTaskbarApp" hidden>
+              <span class="win-taskbar__app-icon"></span>
+              <span>Jump.exe</span>
+            </div>
+            <div class="win-taskbar__apps" id="birdTaskbarApp" hidden>
+              <span class="win-taskbar__app-icon win-taskbar__app-icon--bird">🕊️</span>
+              <span data-i18n="bird_title">Bird.exe</span>
+            </div>
+            <div class="win-taskbar__tray">
+              <span class="win-battery" id="winBattery">
+                <span class="win-battery__icon">
+                  <span class="win-battery__fill" id="winBatteryFill"></span>
+                </span>
+                <span id="winBatteryPct">15%</span>
+              </span>
+              <span id="winClock">00:00</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ---------- game window (opens when Jump.exe is launched) ---------- -->
+        <div class="win-window" id="gameWindow" hidden>
+          <div class="win-window__titlebar">
+            <span class="win-window__title">
+              <span class="win-taskbar__app-icon"></span>
+              Jump.exe
+            </span>
+            <div class="win-window__controls">
+              <button type="button" id="gameMinimizeBtn" aria-label="minimize">&#8212;</button>
+              <button type="button" id="gameWinCloseBtn" aria-label="close">&#10005;</button>
+            </div>
+          </div>
+          <div class="win-window__content" id="gameWindowContent">
+            <canvas id="gameCanvas"></canvas>
+
+            <div class="game-hud">
+              <span class="game-hud__score" id="gameScore">0</span>
+              <span class="game-hud__best" id="gameBest" data-i18n="game_best">بهترین: 0</span>
+            </div>
+
+            <div class="game-overlay-msg" id="gameStartMsg">
+              <p class="game-overlay-msg__title" data-i18n="game_title">Jump.exe</p>
+              <p data-i18n="game_tap_start">برای شروع بازی، ضربه بزن یا اسپیس رو فشار بده</p>
+            </div>
+
+            <div class="game-overlay-msg" id="gameOverMsg" hidden>
+              <p class="game-overlay-msg__title" data-i18n="game_over_title">باختی!</p>
+              <p><span data-i18n="game_score_label">امتیاز:</span> <span id="gameOverScore">0</span></p>
+              <button type="button" class="game-restart-btn" id="gameRestartBtn" data-i18n="game_restart">دوباره امتحان کن</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ---------- bird window (opens when Bird.exe is launched) ---------- -->
+        <div class="win-window" id="birdWindow" hidden>
+          <div class="win-window__titlebar">
+            <span class="win-window__title">
+              <span class="win-taskbar__app-icon win-taskbar__app-icon--bird">🕊️</span>
+              <span data-i18n="bird_title">Bird.exe</span>
+            </span>
+            <div class="win-window__controls">
+              <button type="button" id="birdMinimizeBtn" aria-label="minimize">&#8212;</button>
+              <button type="button" id="birdWinCloseBtn" aria-label="close">&#10005;</button>
+            </div>
+          </div>
+          <div class="win-window__content" id="birdWindowContent">
+            <canvas id="birdCanvas"></canvas>
+
+            <div class="game-hud">
+              <span class="game-hud__score" id="birdScore">0</span>
+              <span class="game-hud__best" id="birdBest" data-i18n="game_best">بهترین: 0</span>
+            </div>
+
+            <div class="game-overlay-msg" id="birdStartMsg">
+              <p class="game-overlay-msg__title" data-i18n="bird_title">Bird.exe</p>
+              <p data-i18n="bird_tap_start">برای پرواز، ضربه بزن یا اسپیس رو فشار بده</p>
+            </div>
+
+            <div class="game-overlay-msg" id="birdOverMsg" hidden>
+              <p class="game-overlay-msg__title" data-i18n="game_over_title">باختی!</p>
+              <p><span data-i18n="game_score_label">امتیاز:</span> <span id="birdOverScore">0</span></p>
+              <button type="button" class="game-restart-btn" id="birdRestartBtn" data-i18n="game_restart">دوباره امتحان کن</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ---------- dead-battery lock screen ---------- -->
+        <div class="battery-dead" id="batteryDeadOverlay" hidden>
+          <div class="battery-dead__box">
+            <span class="battery-dead__icon" aria-hidden="true">🪫</span>
+            <p class="battery-dead__title" data-i18n="battery_low_title">شارژ باتری کم است</p>
+            <button type="button" class="battery-dead__exit-btn" id="batteryExitBtn" data-i18n="battery_exit_btn">خروج</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="laptop-screen__rotate" id="rotatePrompt">
+      <span class="laptop-screen__rotate-icon">📱</span>
+      <p data-i18n="rotate_msg">برای تجربه بهتر گوشیتو بچرخون (حالت افقی)</p>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" hidden>
+    <p id="toastMsg"></p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
