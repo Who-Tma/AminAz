@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>کتاب</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&family=Vazirmatn:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f1e4c2;
+    --paper-2: #e9d8ac;
+    --paper-shadow: #c9b384;
+    --ink: #2c2013;
+    --ink-soft: #6b5636;
+    --foil: #a9812f;
+    --link: #2f5d62;
+    --link-active: #3f7a80;
+    --dot-a: #7a3b2e;
+    --dot-b: #3e5a45;
+    --dot-c: #6b4a8a;
+    --dot-d: #a9812f;
+  }
+
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+  html, body { margin: 0; min-height: 100%; background: #0c0805; }
+
+  body {
+    font-family: 'Vazirmatn', Tahoma, sans-serif;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 24px 10px;
+    background:
+      radial-gradient(ellipse 700px 500px at 50% 20%, rgba(255,196,110,0.10), transparent 60%),
+      radial-gradient(ellipse 900px 700px at 50% 100%, rgba(0,0,0,0.6), transparent 60%),
+      #0c0805;
+    overflow: hidden;
+    user-select: none;
+  }
+
+  .glow {
+    position: fixed; inset: 0; pointer-events: none;
+    background: radial-gradient(circle at 50% 15%, rgba(255,178,90,0.16), transparent 45%);
+    animation: flicker 7s ease-in-out infinite;
+  }
+  @keyframes flicker {
+    0%, 100% { opacity: 0.85; } 45% { opacity: 1; } 55% { opacity: 0.7; } 70% { opacity: 0.95; }
+  }
+
+  .book {
+    position: relative;
+    width: 100%;
+    max-width: 380px;
+    perspective: 2000px;
+    perspective-origin: right center;
+    animation: openBook 0.9s cubic-bezier(0.22, 0.9, 0.25, 1) both;
+  }
+  @keyframes openBook {
+    0% { opacity: 0; transform: rotateX(30deg) scale(0.9); }
+    100% { opacity: 1; transform: rotateX(0deg) scale(1); }
+  }
+
+  .cover-shadow {
+    position: absolute; inset: -16px -16px -26px -16px;
+    background: radial-gradient(ellipse at 50% 100%, rgba(0,0,0,0.55), transparent 70%);
+    border-radius: 26px; z-index: -1;
+  }
+
+  .pageWrap {
+    position: relative;
+    transform-style: preserve-3d;
+    transform-origin: right center;
+    touch-action: pan-y;
+    cursor: grab;
+    will-change: transform;
+  }
+
+  .page {
+    position: relative;
+    background:
+      repeating-linear-gradient(0deg, rgba(120,90,40,0.025) 0px, rgba(120,90,40,0.025) 1px, transparent 1px, transparent 3px),
+      radial-gradient(ellipse at 15% 8%, rgba(255,255,255,0.32), transparent 40%),
+      linear-gradient(160deg, var(--paper) 0%, var(--paper-2) 100%);
+    padding: 26px 22px 20px;
+    border-radius: 10px;
+    box-shadow: 0 18px 40px rgba(0,0,0,0.5);
+    min-height: 420px;
+  }
+
+  .page-head { margin: 2px 2px 14px; }
+  .page-head__title {
+    font-family: 'Noto Nastaliq Urdu', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--ink);
+    position: relative;
+    display: inline-block;
+  }
+  .page-head__title::after {
+    content: '';
+    position: absolute; right: 0; left: 0; bottom: -3px; height: 2px;
+    background: var(--foil);
+    transform: scaleX(0);
+    transform-origin: right;
+    animation: drawLine 0.7s 0.15s cubic-bezier(0.4,0,0.2,1) both;
+  }
+  @keyframes drawLine { to { transform: scaleX(1); } }
+
+  .content { min-height: 300px; }
+
+  .entry { animation: fadeUp 0.45s 0.1s ease both; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .entry__lede { font-size: 13.5px; line-height: 2.05; color: var(--ink); margin: 0 0 16px; }
+  .entry__lede::first-letter {
+    font-family: 'Noto Nastaliq Urdu', serif;
+    font-size: 24px; font-weight: 700; color: var(--foil);
+  }
+
+  .marginalia { border-top: 1px dashed rgba(107,86,54,0.4); padding-top: 10px; }
+  .marginalia__row { padding: 6px 2px; }
+  .marginalia__top { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+  .marginalia__name { font-size: 12.5px; color: var(--ink-soft); font-weight: 500; }
+  .marginalia__level { display: flex; gap: 3px; flex-shrink: 0; }
+  .marginalia__level i { width: 5px; height: 5px; border-radius: 50%; background: rgba(169,129,47,0.28); display: block; }
+  .marginalia__level i.on { background: var(--foil); }
+
+  .more-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 4px;
+    font-size: 12px;
+    color: var(--link);
+    text-decoration: none;
+    border-bottom: 1px dashed var(--link);
+    padding-bottom: 1px;
+    cursor: pointer;
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+  .more-link:hover, .more-link:active { color: var(--link-active); border-color: var(--link-active); }
+  .more-link__arrow { transition: transform 0.15s ease; }
+  .more-link:hover .more-link__arrow { transform: translateX(-3px); }
+
+  /* Feature page — spy game */
+  .feature h3 {
+    font-family: 'Noto Nastaliq Urdu', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 14px 0 6px;
+  }
+  .feature h3:first-child { margin-top: 0; }
+  .feature p {
+    font-size: 12.8px;
+    line-height: 1.95;
+    color: var(--ink);
+    margin: 0 0 4px;
+  }
+  .feature ul {
+    margin: 6px 0 0;
+    padding: 0 18px 0 0;
+    font-size: 12.5px;
+    line-height: 1.85;
+    color: var(--ink-soft);
+  }
+  .feature ul li { margin-bottom: 2px; }
+
+  .toc-list { margin-top: 8px; }
+  .toc-row {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    padding: 10px 0;
+    text-decoration: none;
+    color: var(--ink);
+    border-bottom: 1px dashed rgba(107,86,54,0.25);
+    cursor: pointer;
+    transition: color 0.15s ease;
+  }
+  .toc-row:last-child { border-bottom: none; }
+  .toc-row__label { font-size: 13px; flex: 0 0 auto; white-space: nowrap; }
+  .toc-row__dots {
+    flex: 1 1 auto;
+    min-width: 12px;
+    height: 0;
+    margin: 0 2px 3px;
+    border-bottom: 1px dotted rgba(107,86,54,0.55);
+  }
+  .toc-row__page { font-size: 11.5px; color: var(--ink-soft); flex: 0 0 auto; white-space: nowrap; }
+  .toc-row--static { cursor: default; }
+  .toc-row--static .toc-row__label { color: var(--ink-soft); }
+  a.toc-row:hover .toc-row__label, a.toc-row:active .toc-row__label { color: var(--link-active); }
+
+  .myket-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 14px;
+    padding: 8px 14px;
+    background: var(--link);
+    color: #f3ece0;
+    text-decoration: none;
+    font-size: 12.5px;
+    font-weight: 500;
+    border-radius: 4px;
+    box-shadow: 0 4px 10px rgba(47,93,98,0.35);
+    transition: background 0.15s ease, transform 0.15s ease;
+  }
+  .myket-link:hover { background: var(--link-active); transform: translateY(-1px); }
+
+  .page-foot {
+    direction: ltr;
+    margin-top: 16px;
+    width: 100%;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+  }
+  .page-foot i {
+    flex: 0 0 auto;
+    width: 5px; height: 5px; border-radius: 50%;
+    background: rgba(255,255,255,0.22);
+    transition: transform 0.25s ease, background 0.25s ease;
+  }
+  .page-foot i.on { transform: scale(1.5); }
+
+  @media (max-width: 480px) {
+    .book { max-width: 340px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="glow"></div>
+
+<div class="book" id="book">
+  <div class="cover-shadow"></div>
+  <div class="pageWrap" id="pageWrap">
+    <div class="page" id="page">
+      <div class="page-head"><span class="page-head__title" id="title"></span></div>
+      <div class="content" id="content"></div>
+    </div>
+  </div>
+  <div class="page-foot" id="pageFoot"></div>
+</div>
+
+<script>
+  const pages = [
+    { // 0
+      title: 'می‌سازم',
+      lede: 'چند وقتیه بیشتر وقتم رو گذاشتم برای ساختن مینی‌اپ‌های تلگرامی؛ از فکر اولیه تا نسخه‌ای که واقعاً تو تلگرام منتشر می‌شه. AdsZero رو دقیقاً با همین روش ساختم. کنارش وب‌اپ‌هایی هم می‌سازم که مثل یه اپ اندرویدی نصب می‌شن، و هر از گاهی یه بازی سبک و ساده.',
+      items: [
+        { name: 'مینی‌اپ تلگرامی (TMA)', level: 4 },
+        { name: 'وب‌اپ نصب‌شدنی (APK)', level: 4 },
+        { name: 'بازی‌های سبک اندروید', level: 3 },
+      ],
+    },
+    { // 1
+      title: 'طراحی وب',
+      lede: 'سایت‌ها رو از پایه با HTML و CSS و جاوااسکریپت می‌سازم؛ وقتی سرعت لازمه از Bootstrap و Tailwind هم کمک می‌گیرم. قبل از کدنویسی معمولاً طرح رابط کاربری رو تو Lunacy می‌کشم تا مطمئن بشم شکل نهایی همونیه که می‌خوام.',
+      items: [
+        { name: 'طراحی و ساخت سایت', level: 4 },
+        { name: 'Bootstrap', level: 4 },
+        { name: 'Tailwind CSS', level: 4 },
+        { name: 'Lunacy', level: 3 },
+      ],
+    },
+    { // 2
+      title: 'ابزار و همکار',
+      lede: 'با APK Editor کار می‌کنم، در همون حدی که برای شخصی‌سازی خروجی‌های اندرویدی لازمه. و این روزها از هوش مصنوعی هم مثل یه همکار سریع استفاده می‌کنم؛ برای نوشتن کد و رد و بدل کردن ایده.',
+      items: [
+        { name: 'APK Editor', level: 3 },
+        { name: 'کار با هوش مصنوعی', level: 3 },
+      ],
+    },
+    { // 3 — TOC / chapter-heading page
+      title: 'نمونه کار',
+      feature: true,
+      html: `
+        <h3>نمونه کار ها:</h3>
+        <div class="toc-list">
+          <div class="toc-row toc-row--static">
+            <span class="toc-row__label">وب‌اپ قابل نصب (جاسوس)</span>
+            <span class="toc-row__dots"></span>
+            <span class="toc-row__page">صفحه ۵ تا ۷</span>
+          </div>
+          <div class="toc-row toc-row--static">
+            <span class="toc-row__label">مینی‌اپ تلگرامی (C̤̮ᴏɪɴ E͙ᴀʀɴ²⁰²⁶)</span>
+            <span class="toc-row__dots"></span>
+            <span class="toc-row__page">صفحه ۸ تا ۹</span>
+          </div>
+          <div class="toc-row toc-row--static">
+            <span class="toc-row__label">سایت (همین سایت)</span>
+            <span class="toc-row__dots"></span>
+          </div>
+        </div>
+      `,
+    },
+    { // 4 — feature page (spy, part 1)
+      title: 'جاسوس',
+      feature: true,
+      html: `
+        <p>یکی از بازی‌هایی که ساختم و توی مایکت منتشرش کردم، یه بازی دورهمیه به اسم «جاسوس» — شبیه مافیا، اما با قانون‌های خودش.</p>
+
+        <h3>ماجرا چیه</h3>
+        <p>گوشی نوبتی دست بازیکن‌ها می‌چرخه و هرکس یه کلمه‌ی مشخص رو می‌بینه — مثلاً ماشین، همبرگر، یخچال. یک یا چند نفر (بسته به تنظیمات) به‌جای کلمه، جمله‌ی «شما جاسوس هستید» رو می‌بینن.</p>
+      `,
+    },
+    { // 5 — feature page (spy, part 2)
+      title: 'جاسوس',
+      feature: true,
+      html: `
+        <h3>بازی چطور پیش می‌ره</h3>
+        <p>وقتی بازی شروع می‌شه، شهروندها از هم سوال‌های دوگزینه‌ای درباره‌ی کلمه می‌پرسن، و هر کس سوال بهش خورد باید مرتبط‌ترین جواب رو بده تا ثابت کنه شهرونده. در حین بازی اگر شهروندان حس کنند بازیکنی کلمه رو نمی‌دونه و داره اشتباه جواب می‌ده بهش شک می‌کنن و به عنوان جاسوس بهش رأی می‌دن تا از بازی خارج بشه، و به همین شکل تمام جاسوس‌ها را باید توی مدت زمان x دقیقه (بسته به تنظیمات) از بازی خارج کنند تا شهروندان برنده شوند.</p>
+        <p>یه راه برد دیگه هم برای جاسوس هست: اگه سوال‌ها بیش‌ازحد به کلمه نزدیک بشن، جاسوس می‌تونه وسط بازی کلمه رو حدس بزنه و بگه — و اگه درست باشه، بازی همون‌جا با برد جاسوس‌ها تموم می‌شه.</p>
+      `,
+    },
+    { // 6 — feature page (spy, part 3)
+      title: 'جاسوس',
+      feature: true,
+      html: `
+        <h3>نقش‌های بیشتر</h3>
+        <p>توی حالت حرفه‌ای، کلانتر و جوکر هم به بازی اضافه می‌شن، و یه نقش هم خودم به بازی اضافه کردم به اسم «شهروند مست» که یک کلمه‌ی دیگه، اما نزدیک به کلمه‌ی اصلی می‌بینه و خودش متوجه نمی‌شه و فکر می‌کنه کلمه‌ی درست همینه، و یه‌جورایی بازی رو سخت‌تر می‌کنه؛ برای کاراکترهای دیگه مثل کلانتر و جوکر هم حوصلم نمی‌شه توضیح بدم. اگه دوست داشتین امتحانش کنید.</p>
+
+        <a class="myket-link" href="https://myket.ir/app/com.az.spyoffline" target="_blank" rel="noopener">دانلود از مایکت</a>
+      `,
+    },
+    { // 7 — Coin Earn mini app, part 1
+      title: 'C̤̮ᴏɪɴ E͙ᴀʀɴ²⁰²⁶',
+      feature: true,
+      html: `
+        <p>یکی دیگه از کارایی که ساختم، یه مینی‌اپ تلگرامیه به اسم Coin Earn — دارای بک‌اند و ذخیره‌ی اطلاعات کاربران توی دیتابیس. فقط برای نمونه‌کار ساختمش و تبلیغات مخصوص خود تلگرام رو بهش وصل کردم.</p>
+
+        <h3>بازی چیه</h3>
+        <p>کلیت این مینی‌اپ یه بازی کسب سکه‌ست؛ با انجام تسک و تماشای تبلیغات سکه به‌دست میاری و توی گردونه شرکت می‌کنی. سکه‌هاتو توی گردونه می‌ذاری و اگه برنده‌ی اون گردونه تو باشی، تمام سکه‌های توی اون گردونه رو به‌دست میاری.</p>
+      `,
+    },
+    { // 8 — Coin Earn mini app, part 2
+      title: 'C̤̮ᴏɪɴ E͙ᴀʀɴ²⁰²⁶',
+      feature: true,
+      html: `
+        <h3>آپگرید و پیشرفت</h3>
+        <p>همین‌طور می‌تونی توانایی‌های گردونه و قابلیت‌های خاص رو آپگرید کنی و توی بازی پیشرفت کنی.</p>
+
+        <h3>پنل مدیریت</h3>
+        <p>یه پنل مخصوص مدیریت مینی‌اپ هم ساختم با قابلیت نصب روی اندروید، تا شخصی بدون سواد برنامه‌نویسی هم بتونه مینی‌اپ رو کنترل کامل کنه؛ به‌نظرم همین بخشش جالب بود.</p>
+        <ul>
+          <li>کسب درآمد از تبلیغات</li>
+          <li>اتصال بک‌اند</li>
+          <li>سیستم رفرال</li>
+          <li>اپلیکیشن مدیریت مینی‌اپ</li>
+        </ul>
+
+        <a class="myket-link" href="https://t.me/coin_earn_2026bot" target="_blank" rel="noopener">شروع در تلگرام</a>
+      `,
+    },
+  ];
+
+  const dotColors = ['var(--dot-a)', 'var(--dot-b)', 'var(--dot-c)', 'var(--dot-d)', 'var(--dot-a)', 'var(--dot-b)'];
+
+  const pageWrapEl = document.getElementById('pageWrap');
+  const titleEl = document.getElementById('title');
+  const contentEl = document.getElementById('content');
+  const footEl = document.getElementById('pageFoot');
+
+  let pageIndex = 0;
+  let isAnimating = false;
+  let dragging = false;
+  let startX = 0;
+  let pageWidth = 1;
+
+  function itemsHtml(items) {
+    return items.map(it => `
+      <div class="marginalia__row">
+        <div class="marginalia__top">
+          <span class="marginalia__name">${it.name}</span>
+          <span class="marginalia__level" aria-label="${it.level} از ۵">
+            ${[1,2,3,4,5].map(n => `<i class="${n <= it.level ? 'on' : ''}"></i>`).join('')}
+          </span>
+        </div>
+        ${it.link ? `<a class="more-link" data-target="${it.link.target}">${it.link.label}<span class="more-link__arrow">←</span></a>` : ''}
+      </div>`).join('');
+  }
+
+  function pageHtml(p) {
+    if (p.feature) {
+      return `<div class="entry"><div class="feature">${p.html}</div></div>`;
+    }
+    return `
+      <div class="entry">
+        <p class="entry__lede">${p.lede}</p>
+        <div class="marginalia">${itemsHtml(p.items)}</div>
+      </div>`;
+  }
+
+  function render(idx) {
+    const p = pages[idx];
+    titleEl.textContent = p.title;
+    contentEl.innerHTML = pageHtml(p);
+
+    footEl.innerHTML = pages.map((_, i) =>
+      `<i style="background:${i === idx ? dotColors[i % dotColors.length] : 'rgba(255,255,255,0.22)'}" class="${i === idx ? 'on' : ''}"></i>`
+    ).join('');
+
+    document.querySelectorAll('.more-link, .toc-row[data-target]').forEach(a => {
+      a.addEventListener('pointerdown', e => e.stopPropagation());
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        const targetPage = parseInt(a.dataset.target, 10);
+        if (targetPage !== pageIndex && !isAnimating && targetPage >= 0 && targetPage < pages.length) {
+          goToPage(targetPage);
+        }
+      });
+    });
+  }
+
+  /* ============================================================
+     English (LTR) mode — NOT USED YET, kept only as a reference.
+     Right now the book is hinged on the RIGHT (spine on the right,
+     pages turn toward the left — Persian/RTL book style):
+       - .book / .pageWrap use transform-origin / perspective-origin: right center
+       - commitTurn(): exitAngle = direction===1 ? 95 : -95
+       - onPointerMove(): raw = -(deltaX / pageWidth) * 150
+
+     If/when English content needs a Western-style book (spine on
+     the LEFT, pages turn toward the right), mirror all of the above:
+       1) In CSS, change on .book and .pageWrap:
+            perspective-origin: left center;
+            transform-origin: left center;
+       2) In commitTurn(), flip the exit/enter angles back:
+            const exitAngle  = direction === 1 ? -95 : 95;
+            const enterAngle = direction === 1 ?  95 : -95;
+       3) In onPointerMove(), drop the negation and swap the
+          hasNext/hasPrev resistance branches back:
+            let raw = (deltaX / pageWidth) * 150;
+            if (raw < 0 && !hasNext) angle = Math.max(raw * 0.25, -28);
+            else if (raw > 0 && !hasPrev) angle = Math.min(raw * 0.25, 28);
+            else angle = Math.max(-150, Math.min(150, raw));
+     onPointerUp()/goToPage() thresholds stay the same either way,
+     since they work off raw deltaX, not the angle sign.
+     ============================================================ */
+
+  function setTransform(angle, brightness, withTransition) {
+    pageWrapEl.style.transition = withTransition
+      ? 'transform 0.36s cubic-bezier(0.45,0.05,0.35,1), filter 0.36s ease'
+      : 'none';
+    pageWrapEl.style.transform = `rotateY(${angle}deg)`;
+    pageWrapEl.style.filter = `brightness(${brightness})`;
+  }
+
+  function commitTurn(direction) {
+    isAnimating = true;
+    const exitAngle = direction === 1 ? 95 : -95;
+    setTransform(exitAngle, 0.65, true);
+
+    setTimeout(() => {
+      pageIndex += direction;
+      render(pageIndex);
+      const enterAngle = direction === 1 ? -95 : 95;
+      setTransform(enterAngle, 0.65, false);
+      void pageWrapEl.offsetWidth;
+      setTransform(0, 1, true);
+      setTimeout(() => { isAnimating = false; }, 370);
+    }, 350);
+  }
+
+  function goToPage(target) {
+    const direction = target > pageIndex ? 1 : -1;
+    commitTurn(direction);
+  }
+
+  function snapBack() { setTransform(0, 1, true); }
+
+  function onPointerDown(e) {
+    if (isAnimating) return;
+    if (e.target.closest('.more-link') || e.target.closest('.myket-link')) return;
+    dragging = true;
+    startX = e.clientX;
+    pageWidth = pageWrapEl.getBoundingClientRect().width;
+    pageWrapEl.style.cursor = 'grabbing';
+    pageWrapEl.setPointerCapture(e.pointerId);
+  }
+
+  function onPointerMove(e) {
+    if (!dragging) return;
+    const deltaX = e.clientX - startX;
+    const hasNext = pageIndex < pages.length - 1;
+    const hasPrev = pageIndex > 0;
+    let raw = (deltaX / pageWidth) * 150;
+
+    let angle;
+    if (raw > 0 && !hasNext) angle = Math.min(raw * 0.25, 28);
+    else if (raw < 0 && !hasPrev) angle = Math.max(raw * 0.25, -28);
+    else angle = Math.max(-150, Math.min(150, raw));
+
+    const brightness = 1 - Math.min(Math.abs(angle) / 90, 1) * 0.32;
+    setTransform(angle, brightness, false);
+  }
+
+  function onPointerUp(e) {
+    if (!dragging) return;
+    dragging = false;
+    pageWrapEl.style.cursor = 'grab';
+
+    const deltaX = e.clientX - startX;
+    const hasNext = pageIndex < pages.length - 1;
+    const hasPrev = pageIndex > 0;
+    const threshold = pageWidth * 0.14;
+
+    if (deltaX > threshold && hasNext) commitTurn(1);
+    else if (deltaX < -threshold && hasPrev) commitTurn(-1);
+    else snapBack();
+  }
+
+  pageWrapEl.addEventListener('pointerdown', onPointerDown);
+  pageWrapEl.addEventListener('pointermove', onPointerMove);
+  pageWrapEl.addEventListener('pointerup', onPointerUp);
+  pageWrapEl.addEventListener('pointercancel', onPointerUp);
+
+  render(pageIndex);
+</script>
+
+</body>
+</html>
